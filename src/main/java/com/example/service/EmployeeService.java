@@ -18,4 +18,8 @@ public class EmployeeService {
     public List<Employee> showList() {
         return repository.findAll();
     }
+
+    public Employee showDetail(Integer id) {
+        return repository.load(id);
+    }
 }
