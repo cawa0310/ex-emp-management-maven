@@ -1,7 +1,17 @@
 package com.example.form;
 
+/**
+ * loginするためのFormクラス
+ * @author Kawaguchi_Ryuya
+ */
 public class LoginForm {
+    /**
+     * Formに入力されたmail_address
+     */
     private String mailAddress;
+    /**
+     * Formに入力されたpassword
+     */
     private String password;
     
     @Override

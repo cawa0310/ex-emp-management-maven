@@ -1,7 +1,20 @@
 package com.example.form;
 
+import jakarta.validation.constraints.Pattern;
+
+/**
+ * EmployeeをupdateするためのFormクラス
+ * @author Kawaguchi_Ryuya
+ */
 public class UpdateEmployeeForm {
+    /**
+     * Formに入力されたEmployeeのid
+     */
     private String id;
+    /**
+     * Formに入力されたEmployeeのdependents_count
+     */
+    @Pattern(regexp="[0-9]+", message="扶養人数を入力してください")
     private String dependentsCount;
     
     @Override

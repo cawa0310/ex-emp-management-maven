@@ -1,8 +1,28 @@
 package com.example.form;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
+/**
+ * AdministratorをinsertするためのFormクラス
+ * @author Kawaguchi_Ryuya
+ */
 public class InsertAdministratorForm {
+    /**
+     * Formに入力されたAdministratorのname
+     */
+    @NotBlank(message="氏名を入力してください")
     private String name;
+    /**
+     * Formに入力されたAdministratorのmail_address
+     */
+    @NotBlank(message="メールアドレスを入力してください")
+    @Email(message="メールアドレスを入力してください")
     private String mailAddress;
+    /**
+     * Formに入力されたAdministratorのpassword
+     */
+    @NotBlank(message="パスワードを入力してください")
     private String password;
     
     @Override

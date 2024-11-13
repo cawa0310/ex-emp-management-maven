@@ -14,6 +14,10 @@ import org.springframework.stereotype.Repository;
 
 import com.example.domain.Administrator;
 
+/**
+ * AdministratorのRepositoryクラス
+ * @author Kawaguchi_Ryuya
+ */
 @Repository
 public class AdministratorRepository {
     @Autowired
@@ -28,6 +32,10 @@ public class AdministratorRepository {
         return administrator;
     };
 
+    /**
+     * Administratorをinsertするメソッド
+     * @param administrator
+     */
     public void insert(Administrator administrator) {
         SqlParameterSource param = new BeanPropertySqlParameterSource(administrator);
         String sql = "INSERT INTO administrators (name, mail_address, password)"
@@ -39,8 +47,14 @@ public class AdministratorRepository {
         administrator.setId(keyHolder.getKey().intValue());
     }
 
+    /**
+     * Administratorをmail_addressとpasswordでfindするメソッド
+     * @param mailAddress
+     * @param password
+     * @return mail_addressとpasswordが一致するAdministrator
+     */
     public Administrator findByMailAddressAndPassword(String mailAddress, String password) {
-        String sql = "SELECT * FROM administrators WHERE mail_address = :mailAddress and password = :password;";
+        String sql = "SELECT id, name, mail_address, password FROM administrators WHERE mail_address = :mailAddress and password = :password;";
         SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress).addValue("password", password);
         List<Administrator> administratorList = template.query(sql, param, ADMINISTRATOR_ROW_MAPPER);
         if (administratorList.size() == 0) {

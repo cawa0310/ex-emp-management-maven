@@ -3,7 +3,10 @@ package com.example.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -14,6 +17,10 @@ import com.example.service.AdministratorService;
 
 import jakarta.servlet.http.HttpSession;
 
+/**
+ * AdministratorのControllerクラス
+ * @author Kawaguchi_Ryuya
+ */
 @Controller
 @RequestMapping("/")
 public class AdministratorController {
@@ -25,8 +32,20 @@ public class AdministratorController {
         return "administrator/insert";
     }
 
+    @ModelAttribute
+    public InsertAdministratorForm setUpForm() {
+        return new InsertAdministratorForm();
+    }
+
     @PostMapping("/insert")
-    public String inset(InsertAdministratorForm form) {
+    public String inset(
+            @Validated InsertAdministratorForm form
+            , BindingResult result) {
+
+        if (result.hasErrors()) {
+            return toInsert(form);
+        }
+
         Administrator administrator = new Administrator();
         administrator.setName(form.getName());
         administrator.setMailAddress(form.getMailAddress());

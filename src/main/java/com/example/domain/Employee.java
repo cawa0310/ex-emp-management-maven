@@ -2,18 +2,58 @@ package com.example.domain;
 
 import java.util.Date;
 
+/**
+ * EmployeeのDomainクラス
+ * @author Kawaguchi_Ryuya
+ */
 public class Employee  {
+    /**
+     * Employeeのid
+     */
     private Integer id;
+    /**
+     * Employeeのname
+     */
     private String name;
+    /**
+     * Employeeのimage
+     */
     private String image;
+    /**
+     * Employeeのgender
+     */
     private String gender;
+    /**
+     * Employeeのhire_date
+     */
     private Date hireDate;
+    /**
+     * Employeeのmail_address
+     */
     private String mailAddress;
+    /**
+     * Employeeのzip_code
+     */
     private String zipCode;
+    /**
+     * Employeeのaddress
+     */
     private String address;
+    /**
+     * Employeeのtelephone
+     */
     private String telephone;
+    /**
+     * Employeeのsalary
+     */
     private Integer salary;
+    /**
+     * Employeeのcharacteristics
+     */
     private String characteristics;
+    /**
+     * Employeeのdependents_count
+     */
     private Integer dependentsCount;
     
     @Override

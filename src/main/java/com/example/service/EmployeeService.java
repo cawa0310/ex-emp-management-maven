@@ -30,7 +30,7 @@ public class EmployeeService {
     /**
      * EmployeeのDetailをshowするメソッド
      * @param id
-     * @return idと一致するEmployee
+     * @return idが一致するEmployee
      */
     public Employee showDetail(Integer id) {
         return repository.load(id);

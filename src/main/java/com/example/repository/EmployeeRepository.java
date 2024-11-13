@@ -13,6 +13,10 @@ import org.springframework.stereotype.Repository;
 
 import com.example.domain.Employee;
 
+/**
+ * EmployeeのRepositoryクラス
+ * @author Kawaguchi_Ryuya
+ */
 @Repository
 public class EmployeeRepository {
     @Autowired
@@ -21,19 +25,36 @@ public class EmployeeRepository {
     private static final RowMapper<Employee> EMPLOYEE_ROW_MAPPER
         = new BeanPropertyRowMapper<>(Employee.class);
 
+    /**
+     * Employeeをfindするメソッド
+     * @return 条件と一致するEmployeeのList
+     */
     public List<Employee> findAll() {
-        String sql = "SELECT * FROM employees ORDER BY hire_date DESC";
+        String sql = "SELECT id, name, image, gender, hire_date, mail_address,"
+            + " zip_code, address, telephone, salary, characteristics, dependents_count"
+            + " FROM employees ORDER BY hire_date DESC";
         List<Employee> employeeList = template.query(sql, EMPLOYEE_ROW_MAPPER);
         return employeeList;
     }
 
+    /**
+     * Employeeを主キーでfindするメソッド
+     * @param id
+     * @return idが一致するEmployee
+     */
     public Employee load(Integer id) {
-        String sql = "SELECT * FROM employees WHERE id = :id;";
+        String sql = "SELECT id, name, image, gender, hire_date, mail_address,"
+            + " zip_code, address, telephone, salary, characteristics, dependents_count"
+            + " FROM employees WHERE id = :id;";
         SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
         Employee employee = template.queryForObject(sql, param, EMPLOYEE_ROW_MAPPER);
         return employee;
     }
 
+    /**
+     * Employeeをupdateするメソッド
+     * @param employee
+     */
     public void update(Employee employee) {
         String sql = "UPDATE employees SET name = :name, image = :image, gender = :gender, hire_date = :hireDate,"
             + " mail_address = :mailAddress, zip_code = :zipCode, address = :address, telephone = :telephone,"

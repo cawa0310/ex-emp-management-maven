@@ -1,9 +1,25 @@
 package com.example.domain;
 
+/**
+ * AdministratorのDomainクラス
+ * @author Kawaguchi_Ryuya
+ */
 public class Administrator {
+    /**
+     * Administratorのid
+     */
     private Integer id;
+    /**
+     * Administratorのname
+     */
     private String name;
+    /**
+     * Administratorのmail_address
+     */
     private String mailAddress;
+    /**
+     * Administratorのpassword
+     */
     private String password;
 
     @Override
