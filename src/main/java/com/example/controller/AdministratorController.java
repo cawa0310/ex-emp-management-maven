@@ -27,6 +27,11 @@ public class AdministratorController {
     @Autowired
     private AdministratorService service;
 
+    /**
+     * Administratorのinsertページを表示するメソッド
+     * @param form
+     * @return Administratorのinsertページ
+     */
     @GetMapping("/toInsert")
     public String toInsert(InsertAdministratorForm form) {
         return "administrator/insert";
@@ -37,6 +42,12 @@ public class AdministratorController {
         return new InsertAdministratorForm();
     }
 
+    /**
+     * Administratorをinsertするメソッド
+     * @param form
+     * @param result
+     * @return Administratorのlogin
+     */
     @PostMapping("/insert")
     public String inset(
             @Validated InsertAdministratorForm form
@@ -54,6 +65,11 @@ public class AdministratorController {
         return "redirect:/";
     }
 
+    /**
+     * Administratorのloginページを表示するメソッド
+     * @param form
+     * @return Administratorのloginページ
+     */
     @GetMapping("/")
     public String toLogin(LoginForm form) {
         return "administrator/login";
@@ -62,6 +78,14 @@ public class AdministratorController {
     @Autowired
     private HttpSession session;
 
+    /**
+     * Administratorのloginをするメソッド
+     * @param form
+     * @param model
+     * @return
+     * loginが成功した場合はEmployeeのList
+     * loginが失敗した場合はAdministratorのlogin
+     */
     @PostMapping("/login")
     public String login(LoginForm form, Model model) {
         Administrator administrator = service.login(form.getMailAddress(), form.getPassword());
@@ -75,6 +99,11 @@ public class AdministratorController {
         }
     }
 
+    /**
+     * Administratorのlogoutをするメソッド
+     * @param form
+     * @return Administratorのlogin
+     */
     @GetMapping("/logout")
     public String logout(LoginForm form) {
         session.invalidate();

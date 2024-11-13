@@ -25,6 +25,11 @@ public class EmployeeController {
     @Autowired
     private EmployeeService service;
 
+    /**
+     * EmployeeのListをshowするメソッド
+     * @param model
+     * @return EmployeeのList
+     */
     @GetMapping("/showList")
     public String showList(Model model) {
         List<Employee> employeeList = service.showList();
@@ -32,6 +37,13 @@ public class EmployeeController {
         return "employee/list";
     }
 
+    /**
+     * idが一致するEmployeeのDetailをshowするメソッド
+     * @param id
+     * @param model
+     * @param form
+     * @return idが一致するEmployee
+     */
     @GetMapping("/showDetail")
     public String showDetail(String id, Model model, UpdateEmployeeForm form) {
         Employee employee = service.showDetail(Integer.parseInt(id));
@@ -39,6 +51,15 @@ public class EmployeeController {
         return "employee/detail";
     }
 
+    /**
+     * Employeeをupdateするメソッド
+     * @param form
+     * @param result
+     * @param model
+     * @return
+     * updateが成功した場合はEmployeeのList
+     * updateが失敗した場合はEmployeeのDetail
+     */
     @PostMapping("/update")
     public String update(
         @Validated UpdateEmployeeForm form
